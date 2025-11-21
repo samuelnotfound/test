@@ -3,74 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100 Medical Terms Reviewer - Liquid Glass</title>
+    <title>100 Medical Terms Reviewer - Modern Grey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        :root {
+            --bg-color: #F8F9FA; /* Light grey background, common in Google apps */
+            --card-bg-color: #FFFFFF; /* White cards */
+            --text-color-primary: #202124; /* Dark grey for main text */
+            --text-color-secondary: #5F6368; /* Medium grey for secondary text */
+            --border-color: #DADCE0; /* Light grey border */
+            --shadow-light: 0 1px 3px rgba(60, 64, 67, 0.08), 0 1px 2px rgba(60, 64, 67, 0.1);
+            --shadow-hover: 0 4px 8px rgba(60, 64, 67, 0.16), 0 4px 6px rgba(60, 64, 67, 0.12);
+            --primary-blue: #1A73E8; /* Google's primary blue */
+            --success-green: #34A853; /* Google's success green */
+            --danger-red: #EA4335; /* Google's danger red */
+        }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #a8c0ff, #3f2b96); /* Liquid background */
+            background-color: var(--bg-color);
             margin: 0;
             padding: 20px;
-            color: #fff;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            color: var(--text-color-primary);
+            box-sizing: border-box; /* Include padding in element's total width and height */
         }
+
         h1 {
             font-size: 2.5em;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            letter-spacing: 1px;
-            color: #e0f2f7; /* Lighter color for contrast */
+            margin-bottom: 10px;
+            color: var(--text-color-primary);
+            font-weight: 500; /* Google Sans default is often 400/500 */
         }
+
         p {
             font-size: 1.1em;
             margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            color: #c8e6f0;
+            color: var(--text-color-secondary);
+            text-align: center;
         }
+
         .flashcard-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 25px; /* Increased gap for better spacing */
+            gap: 20px;
             width: 100%;
-            max-width: 1300px; /* Slightly wider container */
-            margin-top: 20px;
-            padding-bottom: 50px;
+            max-width: 1200px;
+            padding-bottom: 40px;
         }
+
         .flashcard {
-            background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
-            border-radius: 16px; /* More rounded corners */
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px); /* Frosted glass effect */
-            -webkit-backdrop-filter: blur(10px); /* Safari support */
-            width: 300px; /* Slightly larger cards */
-            height: 200px; /* Slightly larger cards */
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow-light);
+            width: 300px;
+            height: 180px;
             perspective: 1000px;
-            overflow: hidden; /* Ensure content stays within bounds */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            border: 1px solid var(--border-color); /* Subtle border for definition */
+            overflow: hidden; /* Ensure content doesn't bleed */
         }
+
         .flashcard:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.4);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
         }
+
         .flashcard-inner {
             position: relative;
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncier flip */
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Material Design flip timing */
             transform-style: preserve-3d;
             cursor: pointer;
         }
+
         .flashcard.flipped .flashcard-inner {
             transform: rotateY(180deg);
         }
+
         .flashcard-front, .flashcard-back {
             position: absolute;
             width: 100%;
@@ -79,44 +95,46 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
+            padding: 15px;
             box-sizing: border-box;
-            border-radius: 16px;
-            font-size: 1.2em; /* Slightly larger text */
-            line-height: 1.5;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            color: #fff; /* White text for better contrast on glass */
-            font-weight: 600; /* Bolder text */
+            border-radius: 8px; /* Match card border-radius */
+            font-size: 1.1em;
+            line-height: 1.4;
+            font-weight: 500; /* Slightly bolder for readability */
         }
+
         .flashcard-front {
-            background: linear-gradient(145deg, rgba(70, 130, 180, 0.7), rgba(100, 149, 237, 0.7)); /* SteelBlue to CornflowerBlue */
-            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(0, 0, 0, 0.2);
+            background-color: var(--card-bg-color);
+            color: var(--text-color-primary);
+            border: 1px solid var(--border-color); /* Match card border */
         }
+
         .flashcard-back {
-            background: linear-gradient(145deg, rgba(60, 179, 113, 0.7), rgba(144, 238, 144, 0.7)); /* MediumSeaGreen to LightGreen */
+            background-color: var(--primary-blue); /* Distinct color for the answer side */
+            color: white;
             transform: rotateY(180deg);
-            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--primary-blue); /* Match answer background */
         }
+
         .section-heading {
             width: 100%;
-            max-width: 1300px;
+            max-width: 1200px;
             text-align: left;
             margin-top: 40px;
             margin-bottom: 15px;
-            color: #e0f2f7;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
-            padding-bottom: 10px;
-            font-size: 1.8em;
-            font-weight: 600;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-            padding-left: 10px; /* Indent section headings slightly */
+            color: var(--text-color-primary);
+            font-size: 1.6em;
+            font-weight: 500;
+            padding-left: 10px;
+            border-bottom: 1px solid var(--border-color); /* Subtle separator */
+            padding-bottom: 8px;
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .flashcard {
-                width: 250px;
-                height: 170px;
+                width: 280px;
+                height: 160px;
             }
             .flashcard-front, .flashcard-back {
                 font-size: 1em;
@@ -127,31 +145,30 @@
             }
             p {
                 font-size: 0.9em;
-                text-align: center;
             }
             .section-heading {
-                font-size: 1.5em;
-                text-align: center;
+                font-size: 1.4em;
                 padding-left: 0;
+                text-align: center;
             }
         }
 
         @media (max-width: 480px) {
             .flashcard {
-                width: 90%; /* Make cards take almost full width */
-                height: 150px;
+                width: 95%; /* Make cards take almost full width */
+                height: 140px;
             }
             .flashcard-front, .flashcard-back {
                 font-size: 0.9em;
+                padding: 10px;
             }
             h1 {
-                font-size: 1.8em;
+                font-size: 1.7em;
             }
             .section-heading {
-                font-size: 1.3em;
+                font-size: 1.2em;
             }
         }
-
     </style>
 </head>
 <body>
@@ -673,4 +690,27 @@
         <div class="flashcard" onclick="this.classList.toggle('flipped')">
             <div class="flashcard-inner">
                 <div class="flashcard-front">83. fungus in blood</div>
-                <div class="flashcard-back
+                <div class="flashcard-back">Fungemia</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">84. skin infection</div>
+                <div class="flashcard-back">Cellulitis</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">85. pus pocket</div>
+                <div class="flashcard-back">Abscess</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">86. hospital-acquired infection</div>
+                <div class="flashcard-back">Nosocomial</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front
