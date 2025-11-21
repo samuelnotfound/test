@@ -3,42 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100 Medical Terms Reviewer</title>
+    <title>100 Medical Terms Reviewer - Liquid Glass</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #f4f4f4;
-            margin: 20px;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #a8c0ff, #3f2b96); /* Liquid background */
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         h1 {
-            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            color: #e0f2f7; /* Lighter color for contrast */
+        }
+        p {
+            font-size: 1.1em;
             margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            color: #c8e6f0;
         }
         .flashcard-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 25px; /* Increased gap for better spacing */
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px; /* Slightly wider container */
+            margin-top: 20px;
+            padding-bottom: 50px;
         }
         .flashcard {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 280px;
-            height: 180px;
-            perspective: 1000px; /* For 3D flip effect */
+            background: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+            border-radius: 16px; /* More rounded corners */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Lighter border */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(10px); /* Safari support */
+            width: 300px; /* Slightly larger cards */
+            height: 200px; /* Slightly larger cards */
+            perspective: 1000px;
+            overflow: hidden; /* Ensure content stays within bounds */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .flashcard:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.4);
         }
         .flashcard-inner {
             position: relative;
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.6s;
+            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bouncier flip */
             transform-style: preserve-3d;
             cursor: pointer;
         }
@@ -55,38 +81,83 @@
             justify-content: center;
             padding: 20px;
             box-sizing: border-box;
-            border-radius: 8px;
-            font-size: 1.1em;
-            line-height: 1.4;
+            border-radius: 16px;
+            font-size: 1.2em; /* Slightly larger text */
+            line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            color: #fff; /* White text for better contrast on glass */
+            font-weight: 600; /* Bolder text */
         }
         .flashcard-front {
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
+            background: linear-gradient(145deg, rgba(70, 130, 180, 0.7), rgba(100, 149, 237, 0.7)); /* SteelBlue to CornflowerBlue */
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(0, 0, 0, 0.2);
         }
         .flashcard-back {
-            background-color: #28a745;
-            color: white;
+            background: linear-gradient(145deg, rgba(60, 179, 113, 0.7), rgba(144, 238, 144, 0.7)); /* MediumSeaGreen to LightGreen */
             transform: rotateY(180deg);
-            font-weight: bold;
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.2), 0 0 15px rgba(0, 0, 0, 0.2);
         }
         .section-heading {
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px;
             text-align: left;
-            margin-top: 30px;
-            margin-bottom: 10px;
-            color: #555;
-            border-bottom: 2px solid #ccc;
-            padding-bottom: 5px;
-            font-size: 1.5em;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #e0f2f7;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Subtle white border */
+            padding-bottom: 10px;
+            font-size: 1.8em;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            padding-left: 10px; /* Indent section headings slightly */
         }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .flashcard {
+                width: 250px;
+                height: 170px;
+            }
+            .flashcard-front, .flashcard-back {
+                font-size: 1em;
+            }
+            h1 {
+                font-size: 2em;
+                text-align: center;
+            }
+            p {
+                font-size: 0.9em;
+                text-align: center;
+            }
+            .section-heading {
+                font-size: 1.5em;
+                text-align: center;
+                padding-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flashcard {
+                width: 90%; /* Make cards take almost full width */
+                height: 150px;
+            }
+            .flashcard-front, .flashcard-back {
+                font-size: 0.9em;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .section-heading {
+                font-size: 1.3em;
+            }
+        }
+
     </style>
 </head>
 <body>
 
     <h1>🩺 100 Medical Terms for Interns Reviewer 🧠</h1>
-    <p>Click on the blue card (the definition) to see the medical term!</p>
+    <p>Click on the card (the definition) to reveal the medical term!</p>
 
     <div class="flashcard-container">
 
@@ -602,119 +673,4 @@
         <div class="flashcard" onclick="this.classList.toggle('flipped')">
             <div class="flashcard-inner">
                 <div class="flashcard-front">83. fungus in blood</div>
-                <div class="flashcard-back">Fungemia</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">84. skin infection</div>
-                <div class="flashcard-back">Cellulitis</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">85. pus pocket</div>
-                <div class="flashcard-back">Abscess</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">86. hospital-acquired infection</div>
-                <div class="flashcard-back">Nosocomial</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">87. can spread</div>
-                <div class="flashcard-back">Contagious</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">88. disease-causing organism</div>
-                <div class="flashcard-back">Pathogen</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">89. caused by virus</div>
-                <div class="flashcard-back">Viral</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">90. caused by bacteria</div>
-                <div class="flashcard-back">Bacterial</div>
-            </div>
-        </div>
-
-        <h2 class="section-heading">J. Endocrine / Metabolic</h2>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">91. high blood sugar</div>
-                <div class="flashcard-back">Hyperglycemia</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">92. low blood sugar</div>
-                <div class="flashcard-back">Hypoglycemia</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">93. high potassium</div>
-                <div class="flashcard-back">Hyperkalemia</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">94. low potassium</div>
-                <div class="flashcard-back">Hypokalemia</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">95. high sodium</div>
-                <div class="flashcard-back">Hypernatremia</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">96. low sodium</div>
-                <div class="flashcard-back">Hyponatremia</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">97. high blood sugar illness</div>
-                <div class="flashcard-back">Diabetes mellitus</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">98. enlarged thyroid</div>
-                <div class="flashcard-back">Goiter</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">99. overactive thyroid</div>
-                <div class="flashcard-back">Hyperthyroidism</div>
-            </div>
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('flipped')">
-            <div class="flashcard-inner">
-                <div class="flashcard-front">100. underactive thyroid</div>
-                <div class="flashcard-back">Hypothyroidism</div>
-            </div>
-        </div>
-
-    </div>
-
-    <script>
-        // Simple JavaScript to handle the flip effect is inline in the HTML:
-        // onclick="this.classList.toggle('flipped')" on each flashcard div.
-    </script>
-</body>
-</html>
+                <div class="flashcard-back
