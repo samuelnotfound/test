@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100 Medical Terms Reviewer - Modern Grey</title>
+    <title>100 Medical Terms Reviewer - Dark Mode</title>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #F8F9FA; /* Light grey background, common in Google apps */
-            --card-bg-color: #FFFFFF; /* White cards */
-            --text-color-primary: #202124; /* Dark grey for main text */
-            --text-color-secondary: #5F6368; /* Medium grey for secondary text */
-            --border-color: #DADCE0; /* Light grey border */
-            --shadow-light: 0 1px 3px rgba(60, 64, 67, 0.08), 0 1px 2px rgba(60, 64, 67, 0.1);
-            --shadow-hover: 0 4px 8px rgba(60, 64, 67, 0.16), 0 4px 6px rgba(60, 64, 67, 0.12);
-            --primary-blue: #1A73E8; /* Google's primary blue */
-            --success-green: #34A853; /* Google's success green */
-            --danger-red: #EA4335; /* Google's danger red */
+            /* Dark Mode Colors (Inspired by Google/Material Dark) */
+            --bg-color: #202124;         /* Deep charcoal background */
+            --card-bg-color: #2D2E30;    /* Slightly lighter dark grey for cards */
+            --text-color-primary: #E8EAED; /* Light grey/off-white for main text */
+            --text-color-secondary: #BDC1C6; /* Medium grey for secondary text */
+            --border-color: #3C4043;     /* Dark grey border/separator */
+            --shadow-dark: 0 4px 6px rgba(0, 0, 0, 0.4); /* Dark, defined shadow */
+            --shadow-hover: 0 6px 12px rgba(0, 0, 0, 0.6);
+            --primary-blue: #8AB4F8;     /* Accessible light blue on dark background */
+            --success-green: #A8D18C;    /* Accessible light green */
         }
 
         body {
@@ -29,14 +29,14 @@
             margin: 0;
             padding: 20px;
             color: var(--text-color-primary);
-            box-sizing: border-box; /* Include padding in element's total width and height */
+            box-sizing: border-box;
         }
 
         h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
             color: var(--text-color-primary);
-            font-weight: 500; /* Google Sans default is often 400/500 */
+            font-weight: 500;
         }
 
         p {
@@ -58,19 +58,20 @@
 
         .flashcard {
             background-color: var(--card-bg-color);
-            border-radius: 8px;
-            box-shadow: var(--shadow-light);
-            width: 300px;
-            height: 180px;
+            border-radius: 12px; /* Slightly more rounded corners for dark mode */
+            box-shadow: var(--shadow-dark);
+            width: 320px; /* Slightly larger card width */
+            height: 200px; /* Slightly larger card height */
             perspective: 1000px;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            border: 1px solid var(--border-color); /* Subtle border for definition */
-            overflow: hidden; /* Ensure content doesn't bleed */
+            border: 1px solid var(--border-color);
+            overflow: hidden;
         }
 
         .flashcard:hover {
-            transform: translateY(-3px);
+            transform: translateY(-4px);
             box-shadow: var(--shadow-hover);
+            border-color: var(--primary-blue); /* Subtle highlight on hover */
         }
 
         .flashcard-inner {
@@ -78,7 +79,7 @@
             width: 100%;
             height: 100%;
             text-align: center;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Material Design flip timing */
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             transform-style: preserve-3d;
             cursor: pointer;
         }
@@ -95,25 +96,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 15px;
+            padding: 20px;
             box-sizing: border-box;
-            border-radius: 8px; /* Match card border-radius */
-            font-size: 1.1em;
-            line-height: 1.4;
-            font-weight: 500; /* Slightly bolder for readability */
+            border-radius: 12px;
+            /* **BIGGER LETTERS** */
+            font-size: 1.4em; 
+            line-height: 1.3;
+            font-weight: 700; /* Bold text for high contrast */
         }
 
         .flashcard-front {
             background-color: var(--card-bg-color);
             color: var(--text-color-primary);
-            border: 1px solid var(--border-color); /* Match card border */
         }
 
         .flashcard-back {
-            background-color: var(--primary-blue); /* Distinct color for the answer side */
-            color: white;
+            background-color: var(--primary-blue); /* Light blue for the answer side */
+            color: var(--bg-color); /* Dark text on light background for answer */
             transform: rotateY(180deg);
-            border: 1px solid var(--primary-blue); /* Match answer background */
         }
 
         .section-heading {
@@ -122,51 +122,31 @@
             text-align: left;
             margin-top: 40px;
             margin-bottom: 15px;
-            color: var(--text-color-primary);
+            color: var(--text-color-secondary);
             font-size: 1.6em;
-            font-weight: 500;
+            font-weight: 400; /* Lighter weight for section headers */
             padding-left: 10px;
-            border-bottom: 1px solid var(--border-color); /* Subtle separator */
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 8px;
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .flashcard {
-                width: 280px;
-                height: 160px;
+                width: 90%; 
+                height: 180px;
             }
             .flashcard-front, .flashcard-back {
-                font-size: 1em;
+                font-size: 1.3em;
             }
             h1 {
                 font-size: 2em;
                 text-align: center;
             }
-            p {
-                font-size: 0.9em;
-            }
             .section-heading {
                 font-size: 1.4em;
                 padding-left: 0;
                 text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .flashcard {
-                width: 95%; /* Make cards take almost full width */
-                height: 140px;
-            }
-            .flashcard-front, .flashcard-back {
-                font-size: 0.9em;
-                padding: 10px;
-            }
-            h1 {
-                font-size: 1.7em;
-            }
-            .section-heading {
-                font-size: 1.2em;
             }
         }
     </style>
@@ -713,4 +693,92 @@
         </div>
         <div class="flashcard" onclick="this.classList.toggle('flipped')">
             <div class="flashcard-inner">
-                <div class="flashcard-front
+                <div class="flashcard-front">87. can spread</div>
+                <div class="flashcard-back">Contagious</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">88. disease-causing organism</div>
+                <div class="flashcard-back">Pathogen</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">89. caused by virus</div>
+                <div class="flashcard-back">Viral</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">90. caused by bacteria</div>
+                <div class="flashcard-back">Bacterial</div>
+            </div>
+        </div>
+
+        <h2 class="section-heading">J. Endocrine / Metabolic</h2>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">91. high blood sugar</div>
+                <div class="flashcard-back">Hyperglycemia</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">92. low blood sugar</div>
+                <div class="flashcard-back">Hypoglycemia</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">93. high potassium</div>
+                <div class="flashcard-back">Hyperkalemia</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">94. low potassium</div>
+                <div class="flashcard-back">Hypokalemia</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">95. high sodium</div>
+                <div class="flashcard-back">Hypernatremia</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">96. low sodium</div>
+                <div class="flashcard-back">Hyponatremia</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">97. high blood sugar illness</div>
+                <div class="flashcard-back">Diabetes mellitus</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">98. enlarged thyroid</div>
+                <div class="flashcard-back">Goiter</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">99. overactive thyroid</div>
+                <div class="flashcard-back">Hyperthyroidism</div>
+            </div>
+        </div>
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">100. underactive thyroid</div>
+                <div class="flashcard-back">Hypothyroidism</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
