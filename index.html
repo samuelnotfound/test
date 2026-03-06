@@ -1,1 +1,92 @@
--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haptic Incrementer</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card: #1a1a1a;
+            --text: #ffffff;
+            --accent: #34d399;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: var(--card);
+            padding: 3rem;
+            border-radius: 2rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            width: 80%;
+            max-width: 300px;
+        }
+
+        #number {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            font-variant-numeric: tabular-nums;
+        }
+
+        button {
+            background: var(--accent);
+            border: none;
+            color: var(--bg);
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.1s ease, filter 0.2s ease;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button:active {
+            transform: scale(0.95);
+            filter: brightness(1.2);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="number">0</div>
+        <button id="incrementBtn">INCREMENT</button>
+    </div>
+
+    <script>
+        const btn = document.getElementById('incrementBtn');
+        const display = document.getElementById('number');
+        let count = 0;
+
+        btn.addEventListener('click', () => {
+            // 1. Update Logic
+            count++;
+            display.innerText = count;
+
+            // 2. Trigger Haptic (Pattern: 50ms vibration)
+            // This matches the "Light" or "Medium" impact on Lochie's site
+            if ("vibrate" in navigator) {
+                navigator.vibrate(50); 
+            } else {
+                console.log("Haptics not supported on this browser/OS combo.");
+            }
+        });
+    </script>
+</body>
+</html>
